@@ -10,7 +10,7 @@ The script returns a ranked summary table showing:
 - Per-unit royalty (your earnings)
 - A “support ranking” showing which format benefits you most
 
-## 🧮 Mathematical Formulation (LaTeX)
+## 🧮 Mathematical Formulation
 
 See `problem.typ` for the full write-up, including constraints, objective, and rationale.
 
