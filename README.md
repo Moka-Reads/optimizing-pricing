@@ -3,27 +3,6 @@
 
 This project provides a mathematical and computational framework for **optimizing the price structure** of published works (ebooks, paperbacks, retail, etc.) across different distribution channels with varying royalty margins.
 
-## 🔍 Problem Summary
-
-Given:
-- A set of \( n \) sales platforms (e.g., Ebook Direct, KDP Paperback, Retail)
-- Known **royalty margins** \( m_i \in [0, 1] \) for each platform
-- Acceptable **price bounds** \( [\underline{p}_i, \overline{p}_i] \) per platform
-
-We want to **choose prices** \( p_1, p_2, \dots, p_n \) such that:
-- Prices follow a natural increasing order:
-  \[
-  p_1 < p_2 < \dots < p_n
-  \]
-- Royalties per unit favor high-margin platforms:
-  \[
-  m_1 p_1 \geq m_2 p_2 \geq \dots \geq m_n p_n
-  \]
-- The **total royalty per unit** is maximized:
-  \[
-  \max \sum_{i=1}^{n} m_i p_i
-  \]
-
 ## 📊 Output
 
 The script returns a ranked summary table showing:
