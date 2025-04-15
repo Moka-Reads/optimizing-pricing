@@ -22,31 +22,12 @@ Install required Python packages:
 uv sync
 ```
 
-Run the optimizer:
-
-```python
-from optimizer import optimize_pricing
-
-platforms = [
-    {'name': 'Ebook (Direct)', 'margin': 0.95},
-    {'name': 'Paperback (KDP)', 'margin': 0.55},
-    {'name': 'Retail (Ingram)', 'margin': 0.35},
-]
-
-bounds = [(5, 20), (10, 30), (15, 40)]
-
-result = optimize_pricing(platforms, bounds)
-print(result)
-# to save csv:
-# result.to_csv('summary.csv', index=False)
-```
+You can run `uv run <script_name.py>` to execute the script depending on which one you want to run.
 
 ## 📄 Files Included
 
-| File | Description |
-|------|-------------|
-| `optimize_pricing.py` | Python implementation of the model |
-| `problem.typ/pdf`   | Write-up of the math model |
+There are a few implementations that have similar results, our preferred is
+`op_cvx.py` as we found it to be the most efficient and accurate. Other ones are also `optimizer.py` and `rules.py` which implement the problem in different ways.
 
 ## 🧠 Concepts Involved
 

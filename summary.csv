@@ -1,4 +1,9 @@
 Platform,Price,Royalty Margin,Royalty per Unit,Ranking
-Ebook (Direct),20.0,0.95,19.0,1
-Paperback,30.0,0.55,16.5,2
-Ebook Other,40.0,0.35,14.0,3
+MoKa Reads Shop,25.0,0.87,21.75,1
+Leanpub,26.27,0.8,21.02,2
+Kobo,28.0,0.7,19.6,3
+B&N Ebook,27.99,0.7,19.59,4
+Google Books,27.89,0.7,19.52,5
+KDP Paperback,31.83,0.6,19.1,6
+B&N Print,31.52,0.55,17.34,7
+KDP Ebook,32.55,0.35,11.39,8
