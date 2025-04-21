@@ -1,0 +1,9 @@
+Platform,Margin,Min Price,Max Price,Price,Royalty,Ranking
+MoKa Reads Shop,0.87,10,25,25.0,21.75,1
+Leanpub,0.8,10,28,26.56,21.25,2
+Google Books,0.7,10,28,28.0,19.6,4
+Kobo,0.7,10,28,28.0,19.6,4
+B&N Ebook,0.7,10,28,28.0,19.6,4
+KDP Paperback,0.6,15,50,31.83,19.1,6
+B&N Print,0.55,15,50,33.82,18.6,7
+KDP Ebook,0.35,10,40,40.0,14.0,8

@@ -1,0 +1,111 @@
+\section{Algorithmic Extensions for Practical Pricing Optimization}
+
+To address the real-world challenges of fair and strategic pricing across multiple publishing platforms, we enhance the core optimization model with several algorithmic improvements. These adjustments ensure that the model remains robust, interpretable, and aligned with both business constraints and reader incentives.
+
+\subsection{Grouped Margin Constraints}
+
+We group platforms by their royalty margins \( m_i \) and enforce ordering only between different groups. This reduces constraint complexity while ensuring that higher-margin platforms receive no less royalty per unit than lower-margin ones.
+
+\[
+m_i p_i \geq m_j p_j + \varepsilon \quad \text{if } m_i > m_j
+\]
+
+Here, \( \varepsilon \geq 0 \) is a small slack variable used to relax the constraint. Only a representative platform from each group is selected to avoid over-constraining the model.
+
+\paragraph{Why this helps:}
+\begin{itemize}
+    \item Reduces redundant comparisons (e.g., Kobo vs. B\&N if both have 70\% margin)
+    \item Preserves interpretable tiering of platforms
+    \item Scales better with many distribution channels
+\end{itemize}
+
+\subsection{Slack-Relaxed Constraint Design}
+
+Constraints between groups are softened using a margin-specific slack term \( \varepsilon \), chosen adaptively depending on the closeness of the margins.
+
+\[
+m_i p_i - m_j p_j \geq \varepsilon_{ij}
+\]
+
+This prevents infeasibility in near-equal margin scenarios.
+
+\paragraph{Why this helps:}
+\begin{itemize}
+    \item Avoids optimization failure when margins are close (e.g., 0.70 vs. 0.68)
+    \item Allows minor trade-offs while preserving intended ranking
+    \item Encourages feasible and realistic solutions
+\end{itemize}
+
+\subsection{Penalty and Reward Adjustment in Objective Function}
+
+To strengthen the incentive structure, we define a modified objective function:
+
+\[
+\max \left[ \sum_{i=1}^n m_i p_i + \lambda_r \cdot \text{Reward}(p) - \lambda_p \cdot \text{Penalty}(p) \right]
+\]
+
+Where:
+\begin{itemize}
+    \item \( \text{Reward}(p) \): encourages good separation between royalty tiers
+    \item \( \text{Penalty}(p) \): discourages near-equal royalties across tiers
+    \item \( \lambda_r, \lambda_p \): tunable coefficients controlling influence
+\end{itemize}
+
+\paragraph{Why this helps:}
+\begin{itemize}
+    \item Avoids scenarios where high-margin formats yield similar or lower royalties
+    \item Promotes meaningful separation in earnings
+    \item Reinforces incentive-aligned pricing structures
+\end{itemize}
+
+\subsection{Intra-Group Price Differentiation}
+
+For platforms within the same margin group, we allow soft variability in pricing, while bounding the maximum price difference:
+
+\[
+|p_i - p_j| \leq \Delta \quad \text{for } i, j \in \text{same group}
+\]
+
+With \( \Delta \approx 5 \) dollars.
+
+\paragraph{Why this helps:}
+\begin{itemize}
+    \item Reflects real-world variation across similarly-royaltied stores
+    \item Prevents artificially flat or uniform pricing
+    \item Provides flexibility to account for user base, store UX, etc.
+\end{itemize}
+
+\subsection{Smart Initialization Based on Margin Rank}
+
+The initial guess for pricing is informed by royalty margin rank:
+\[
+p_i^{(0)} = \underline{p}_i + \left( \frac{r(m_i)}{R} \right)(\overline{p}_i - \underline{p}_i)
+\]
+Where \( r(m_i) \) is the rank of margin \( m_i \) and \( R \) is the total number of unique margin levels.
+
+\paragraph{Why this helps:}
+\begin{itemize}
+    \item Improves convergence of the solver
+    \item Reduces likelihood of landing in poor local minima
+    \item Encourages desirable separation right from initialization
+\end{itemize}
+
+\subsection{Constraint Diagnostics and Validation}
+
+The model logs constraint values, satisfaction status, and relative royalty differences between groups to ensure solution validity. This supports both verification and transparency for adoption in academic, open-access, or educational publishing models.
+
+\paragraph{Why this helps:}
+\begin{itemize}
+    \item Confirms correctness of solution
+    \item Aids interpretability and justification for pricing tiers
+    \item Facilitates deployment in systems with trust or auditing needs
+\end{itemize}
+
+\subsection{Summary}
+
+Together, these enhancements ensure that the optimization model:
+\begin{itemize}
+    \item Maintains structural fairness (higher margin \(\Rightarrow\) higher royalty)
+    \item Encourages readers to support authors while still saving money
+    \item Produces robust, explainable, and incentive-aligned pricing strategies
+\end{itemize}
